@@ -1,0 +1,19 @@
+version: 1
+project:
+  title: SoftCloud Node Linux
+  description: Computational publication, normative architecture, and adoption plan for SoftCloud Node Linux.
+  github: https://github.com/soft-cloud-dev/os-linux
+  toc:
+    - file: README.md
+    - file: introduction.md
+    - file: memorandum.md
+    - file: adoption-plan.md
+    - title: Computational Notebooks
+      children:
+        - file: notebooks/experiment.ipynb
+site:
+  template: book-theme
+  options:
+    logo: images/logo.svg
+    logo_dark: images/logo-dark.svg
+    favicon: images/favicon.ico

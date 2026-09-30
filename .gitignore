@@ -1,0 +1,6 @@
+.venv/
+.lock-venv/
+.wheelhouse/
+_build/
+__pycache__/
+.ipynb_checkpoints/

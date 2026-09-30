@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80" width="400" height="80">
+  <defs>
+    <linearGradient id="softBlueDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#60A5FA" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(10, 15)">
+    <!-- Hexagonal Node Frame -->
+    <polygon points="25,5 45,16 45,39 25,50 5,39 5,16" fill="none" stroke="url(#softBlueDark)" stroke-width="3" stroke-linejoin="round"/>
+    <!-- Inner Kernel Symbol -->
+    <circle cx="25" cy="27.5" r="8" fill="url(#softBlueDark)"/>
+    <path d="M21 27.5 L29 27.5 M25 23.5 L25 31.5" stroke="#0F172A" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <!-- Text: SoftCloud Node Linux -->
+  <text x="75" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#F8FAFC" letter-spacing="-0.02em">
+    SoftCloud <tspan fill="#38BDF8">Linux</tspan>
+  </text>
+  <text x="75" y="55" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="500" fill="#94A3B8" letter-spacing="0.05em">
+    KUBERNETES NODE OS · BHYVE
+  </text>
+</svg>

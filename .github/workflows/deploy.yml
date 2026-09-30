@@ -1,0 +1,82 @@
+name: Jupyter Book Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pages: read
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d
+
+      - name: Configure Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.12.14'
+          architecture: x64
+
+      - name: Install locked environment
+        run: |
+          python -c 'import sys; assert sys.implementation.name == "cpython" and sys.version_info[:3] == (3, 12, 14), sys.version'
+          python -m venv .venv
+          .venv/bin/python -m pip --version
+          .venv/bin/python -m pip install \
+            --require-hashes \
+            --only-binary=:all: \
+            -r requirements.lock
+          .venv/bin/python -m pip check
+          .venv/bin/python -m ipykernel install \
+            --sys-prefix \
+            --name jb2-python \
+            --display-name 'Python (JB2)'
+
+      - name: Validate and build publication artifact
+        env:
+          BASE_URL: ${{ steps.pages.outputs.base_path }}
+          JB_ALLOW_NODEENV: '0'
+        run: |
+          . .venv/bin/activate
+          sh tools/build.sh
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
+        with:
+          path: ./_build/html
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy accepted artifact
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346
