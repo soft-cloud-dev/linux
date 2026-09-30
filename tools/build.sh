@@ -15,4 +15,7 @@ python tools/check_profile.py
 jupyter book --version
 jupyter book clean --all --execute -y
 jupyter book build --html --strict --execute
+if [ -f CNAME ]; then
+  cp CNAME _build/html/CNAME
+fi
 test -s _build/html/index.html

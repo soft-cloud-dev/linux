@@ -2,7 +2,7 @@ version: 1
 project:
   title: SoftCloud Node Linux
   description: Computational publication, normative architecture, and adoption plan for SoftCloud Node Linux.
-  github: https://github.com/soft-cloud-dev/os-linux
+  github: https://github.com/soft-cloud-dev/linux
   toc:
     - file: README.md
     - file: introduction.md
