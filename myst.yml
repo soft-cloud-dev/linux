@@ -1,10 +1,20 @@
 version: 1
 project:
-  title: SoftCloud Node Linux
-  description: Computational publication, normative architecture, and adoption plan for SoftCloud Node Linux.
+  id: os-linux
+  title: SoftCloud Node Linux — Linux Nodes for FreeBSD bhyve
+  short_title: Node Linux
+  description: >-
+    Architecture, build instructions, and validation procedures for Linux Kubernetes nodes running under FreeBSD bhyve.
   github: https://github.com/soft-cloud-dev/linux
+  keywords:
+    - FreeBSD bhyve
+    - Kubernetes
+    - Unified Kernel Image
+    - containerd
+    - Cilium
   toc:
     - file: README.md
+    - file: kubernetes-freebsd-bhyve.md
     - file: introduction.md
     - file: memorandum.md
     - file: adoption-plan.md
@@ -13,7 +23,17 @@ project:
         - file: notebooks/experiment.ipynb
 site:
   template: book-theme
+  nav:
+    - title: Hub
+      url: https://my.softcloud.dev/
+    - title: Node Linux
+      url: https://linux.softcloud.dev/
+    - title: FreeIPA
+      url: https://freeipa.softcloud.dev/
+    - title: GitHub
+      url: https://github.com/soft-cloud-dev
   options:
+    favicon: images/favicon.ico
     logo: images/logo.svg
     logo_dark: images/logo-dark.svg
-    favicon: images/favicon.ico
+    logo_alt: SoftCloud

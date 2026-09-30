@@ -56,7 +56,7 @@ jobs:
 
       - name: Validate and build publication artifact
         env:
-          BASE_URL: ${{ steps.pages.outputs.base_path }}
+          BASE_URL: ""
           JB_ALLOW_NODEENV: '0'
         run: |
           . .venv/bin/activate
